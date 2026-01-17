@@ -32,3 +32,25 @@ This project was built to understand:
 
 ## 🏗 Architecture
 
+Client  
+&nbsp;&nbsp;│  
+&nbsp;&nbsp;▼  
+API Gateway (Port 3000)  
+&nbsp;&nbsp;├── Authentication Middleware  
+&nbsp;&nbsp;├── Logging Middleware  
+&nbsp;&nbsp;├── Timeout Handling  
+&nbsp;&nbsp;├── Retry Logic  
+&nbsp;&nbsp;└── Reverse Proxy Router  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── User Service (Port 4001)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── Order Service (Port 4002)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Payment Service (Port 4003)  
+
+### Request Flow
+
+1. Client sends a request to the API Gateway  
+2. Gateway validates authentication credentials  
+3. Request is logged with method, path, and latency  
+4. Timeout and retry policies are applied  
+5. Request is forwarded to the appropriate internal service  
+6. Response is returned to the client through the gateway  
+
